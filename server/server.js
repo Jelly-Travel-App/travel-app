@@ -29,6 +29,11 @@ app.post('/api/signup', userController.createUser, (req, res) => {
 	res.status(200).json(res.locals.user);
 });
 
+// notes
+app.post('/api/notes', userController.addNote, (req, res) => {
+	res.sendStatus(200);
+});
+
 //YELP API
 // /api/location, method: POST
 app.post('/api/:location', (req, res) => {

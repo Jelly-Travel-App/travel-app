@@ -68,4 +68,14 @@ userController.verifyUser = function (req, res, next) {
 		});
 };
 
+userController.addNote = function (req, res, next) {
+	const { username, note } = req.body;
+	user
+		.updateOne({ username: username }, { $push: { notes: note } })
+		.then((result) => {
+			console.log('result ', result);
+			return next();
+		});
+};
+
 module.exports = userController;
