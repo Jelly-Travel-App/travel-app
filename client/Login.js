@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Login = () => {
+    const [isUser, setUser] = useState('')
     return (
         <div>
             <form onSubmit={(e) => {
@@ -16,7 +17,11 @@ const Login = () => {
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    if (data === true) {
+                        setUser({
+                            user: username
+                        })
+                    }
                 })
             }}>
                 <div id="login-text">
