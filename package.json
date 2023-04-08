@@ -1,0 +1,42 @@
+{
+	"name": "travel-app",
+	"version": "1.0.0",
+	"description": "I'm read",
+	"main": "index.js",
+	"scripts": {
+		"start": "NODE_ENV=production node ./server/server.js",
+		"build": "NODE_ENV=production webpack",
+		"dev": "NODE_ENV=development webpack serve --open & NODE_ENV=development nodemon server/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Jelly-Travel-App/travel-app.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Jelly-Travel-App/travel-app/issues"
+	},
+	"homepage": "https://github.com/Jelly-Travel-App/travel-app#readme",
+	"dependencies": {
+		"express": "^4.18.2",
+		"mongoose": "^7.0.3",
+		"nodemon": "^2.0.22",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router": "^6.10.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.21.4",
+		"@babel/preset-env": "^7.21.4",
+		"@babel/preset-react": "^7.18.6",
+		"babel-loader": "^9.1.2",
+		"css-loader": "^6.7.3",
+		"html-webpack-plugin": "^5.5.0",
+		"style-loader": "^3.3.2",
+		"webpack": "^5.78.0",
+		"webpack-cli": "^5.0.1",
+		"webpack-dev-server": "^4.13.2"
+	}
+}
