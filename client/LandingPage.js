@@ -1,23 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { BrowserRouter as Router, Link } from "react-router-dom";
 import Login from './Login.js';
-import SignUp from './SignUp';
+import SignUp from './SignUp.js';
 
-const Landing_Page = () => {
+const LandingPage = () => {
     return (
-            <div className='landing_page'>
+        // <Router>
+            <div className='landing-page'>
                 <h1>Welcome Traveler</h1>
                 <h3>Please login</h3>
-                    <div id='login_route'>
+                    <div id='login-route'>
                         <Login />
                     </div>
                 <h3>OR</h3>
                 <h4>Create an Account</h4>
-                        <div id='signup_link'>
-                            <Link to={<SignUp />}>Create Account</Link>
+                        <div id='signup-link'>
+                            testing testing PLEASE PLEEEEEEASE
+                            {/* <Link to={<SignUp />}>Create Account</Link> */}
                         </div>
             </div>
+            // </Router>
     );
 };
 
-export default Landing_Page;
+export default LandingPage;
