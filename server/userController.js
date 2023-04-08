@@ -1,5 +1,4 @@
 const user = require('./userModel');
-
 // creating the object for the middleware functions to be stored on
 const userController = {};
 
