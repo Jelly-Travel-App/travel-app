@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 // URI to connect to the database
 const URI =
 	'mongodb+srv://JellyDev:jellytime@jelly-travel-app.yjivwqz.mongodb.net/?retryWrites=true&w=majority';
-
+const userController = require('./userController');
 // actual connection to the database, upon successful connection, log connected
 mongoose.connect(URI);
 mongoose.connection.once('open', () => {
@@ -18,15 +18,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //user login
-app.post('/api/login', (req, res) => {
+app.post('/api/login', userController.verifyUser, (req, res) => {
 	console.log('login working');
-	res.sendStatus(200);
+	res.status(200).json(res.locals.user);
 });
 
 //user sign-up
-app.post('/api/signup', (req, res) => {
+app.post('/api/signup', userController.createUser, (req, res) => {
 	console.log('signup working');
-	res.sendStatus(200);
+	res.status(200).json(res.locals.user);
 });
 
 //YELP API
