@@ -15,14 +15,15 @@ const Login = () => {
                     },
                     body: JSON.stringify({ username, password })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data === true) {
-                        setUser({
-                            user: username
-                        })
-                    }
-                })
+                .then(res => res.json())
+                .then(res => {
+                    console.log('res: ', res)
+                    if (res === false) {
+                        window.alert('This is not a valid Username/Password')
+                    } else {setUser({
+                        user: res.user
+                    })
+            }})
             }}>
                 <div id="login-text">
                     <input type='text' placeholder="Username" />
