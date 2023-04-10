@@ -29,11 +29,50 @@ app.post('/api/signup', userController.createUser, (req, res) => {
 	res.status(200).json(res.locals.user);
 });
 
+// notes
+app.post('/api/notes', userController.addNote, (req, res) => {
+	res.sendStatus(200);
+});
+
 //YELP API
 // /api/location, method: POST
-app.post('/api/location', (req, res) => {
-	console.log('location working');
-	res.sendStatus(200);
+app.post('/api/location/:location', (req, res) => {
+	// console.log('location working');
+	// deconstruct the location from the request body
+	const { location } = req.params;
+	// specify the type of request
+	const options = {
+		method: 'GET',
+		headers: {
+			accept: 'application/json',
+			Authorization:
+				'Bearer IBMdLlOm1PLF0pGRVw-9rEYVWRXeziQBptvhDIpjfyuwrXxENqYZKDfZotJSb4RWkgPzNQbTHBV5FcJ33hzjyd_4SEl6j7M7teJr28dLDVBXc3o5IOTyMpRwIJcwZHYx',
+		},
+	};
+
+	fetch(
+		`https://api.yelp.com/v3/businesses/search?location=${location}&term=resturants&sort_by=best_match&limit=3`,
+		options
+	)
+		// parse the response data
+		.then((response) => response.json())
+		// receive tha parsed data
+		.then((data) => {
+			// create a new array of objects containing only the information we want to display
+			const locationInfo = data.businesses.map((obj) => {
+				return {
+					name: obj.name,
+					image: obj.image_url,
+					review_count: obj.review_count,
+					rating: obj.rating,
+					address: obj.location.display_address[0],
+					price: obj.price,
+				};
+			});
+			console.log(locationInfo);
+			res.status(200).json(locationInfo);
+		})
+		.catch((err) => console.log(err));
 });
 
 // handles requests to unknown routes
