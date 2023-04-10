@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const URI =
 	'mongodb+srv://JellyDev:jellytime@jelly-travel-app.yjivwqz.mongodb.net/?retryWrites=true&w=majority';
 const userController = require('./userController');
+const locationController = require('./locationController');
 // actual connection to the database, upon successful connection, log connected
 mongoose.connect(URI);
 mongoose.connection.once('open', () => {
@@ -36,6 +37,7 @@ app.post('/api/notes', userController.addNote, (req, res) => {
 
 //YELP API
 // /api/location, method: POST
+<<<<<<< HEAD
 app.post('/api/:location', (req, res) => {
 	// console.log('location working');
 	// deconstruct the location from the request body
@@ -75,6 +77,21 @@ app.post('/api/:location', (req, res) => {
 		})
 		.catch((err) => console.log(err));
 });
+=======
+app.post(
+	'/api/location/:location',
+	locationController.getRestaurants,
+	locationController.getEvents,
+	(req, res) => {
+		// console.log('location working');
+		// deconstruct the location from the request body
+		res.status(200).json({
+			restaurantInfo: res.locals.restaurantInfo,
+			eventInfo: res.locals.eventInfo,
+		});
+	}
+);
+>>>>>>> dev
 
 // handles requests to unknown routes
 // add better error?
