@@ -31,6 +31,7 @@ app.post('/api/signup', userController.createUser, (req, res) => {
 });
 
 // notes
+
 app.post('/api/notes', userController.addNote, (req, res) => {
 	res.status(200).json(res.locals.notes);
 });

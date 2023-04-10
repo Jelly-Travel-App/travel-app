@@ -1,12 +1,9 @@
 import React from 'react';
 /* 
 To Do: 
-	- update fetch request to the correct route. 
-	- save data, pass it to restaurant container out in user-page
-	
-
+    -nav bar gets location and can pass to restaurant and events
 */
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         // nav bar, with logout button and location query
         <nav>
@@ -15,19 +12,21 @@ const NavBar = () => {
                     e.preventDefault();
                     const location = e.target[0].value;
                     // make fetch post request to backend
-                    // check in with backend to see what route name will be
-                    fetch('/api/location', {
+                    fetch(`/api/location/${location}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ location }),
                     })
                         .then((response) => {
-                            // save data and pass it to restaurant container. will be X amount of restaurants.
-                            console.log(response);
+                            
+                            // console.log(response);
                             response.json();
                         })
                         .then((json) => {
-                            console.log(json);
+                            // save data and pass it to restaurant container. will be X amount of restaurants.
+                            console.log('this should be the location response to json', json);
+                            // update location here
+                            return props.updateLocation(json)
                         });
                 }}
             >

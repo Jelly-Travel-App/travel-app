@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = (props) => {
+
     // const [isUser, setUser] = useState('');
     // setUser from response from json
+
+    
+    const navigate = useNavigate()
+    function redirectToUserPage (newState) {
+        navigate('/user', { state: { username: newState.username, notes: newState.notes } })
+    }
+
     return (
         <div>
             <form
@@ -32,9 +42,18 @@ const Login = (props) => {
                                 console.log('login failed');
                             } else {
                                 // we will get an obj with username and password, v, _id, notes
-                                return props.updateUser(json);
+                                console.log("json: ", json)
+                                // console.log('props.updateUser(json): ', props.updateUser(json))
+                                // props.updateUser(json)
+                                console.log("this is Props in login.js: ", props)
+                                // console.log(redirectToUserPage(props.updateUser(json)))
+                                redirectToUserPage(json)
+                                // navigate('/user')
                             }
-                        });
+                        }).catch(
+                            // window.alert('this is an error');
+                            console.log('Error occurred, try again')
+                        );
                 }}
             >
                 <div id="login-text">

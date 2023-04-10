@@ -1,20 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const Notes = (props) => {
     // logic to populate UL with LI containing each element of array
     // props passed in is the notes array
-    console.log('this should be notes array', props.notes);
-
+    // set notes state here
+    console.log(props, 'notes')
+    const [notes, setNotes] = useState(props.user.notes)
+    // console.log('this is our notes initial state', notes)
+    
     return (
         <div>
             {/* here is the notes container, containing all notes. couldn't figure out how to get the UL to work.  */}
-            <div className="notes-container">{props.notes}</div>
+            <div className="notes-container" >{notes.map((note, i) => <p key={i}>{note}</p>)}</div>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
                     const note = e.target[0].value;
-                    // will need to make a post request to /api/notes
-                    //
+                    // post request to add note onto user document notes array
+                    // setNotes(...notes, new note)
+                    // come back to this
+                    fetch('/api/notes', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            // grab username from props, which is the user object
+                            // and also notes
+                            username: props.user.username,
+                            note: note
+                        })
+                    })
+                    .then(res => {
+                        return res.json()
+                    }).then(newNotes => {
+                        console.log(newNotes)
+                        return setNotes(newNotes);
+                    })
+
                 }}
             >
                 <input type="text" placeholder="Enter notes!"></input>
