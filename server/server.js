@@ -36,7 +36,7 @@ app.post('/api/notes', userController.addNote, (req, res) => {
 
 //YELP API
 // /api/location, method: POST
-app.post('/api/:location', (req, res) => {
+app.post('/api/location/:location', (req, res) => {
 	// console.log('location working');
 	// deconstruct the location from the request body
 	const { location } = req.params;

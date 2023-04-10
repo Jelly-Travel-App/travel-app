@@ -49,6 +49,7 @@ userController.verifyUser = function (req, res, next) {
 		.findOne({ username: username })
 		.then((user) => {
 			//if user doesn't exist or password is incorrect
+			console.log('user ', user);
 			if (user === null || user.password !== password) {
 				//return false on res.locals
 				res.locals.user = false;
