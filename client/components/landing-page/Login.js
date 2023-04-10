@@ -47,7 +47,7 @@ const Login = (props) => {
                                 // props.updateUser(json)
                                 console.log("this is Props in login.js: ", props)
                                 // console.log(redirectToUserPage(props.updateUser(json)))
-                                window.alert('Successful log!');
+                                window.alert('Successful login!');
                                 redirectToUserPage(json)
                                 // navigate('/user')
                             }
