@@ -72,9 +72,14 @@ userController.verifyUser = function (req, res, next) {
 userController.addNote = function (req, res, next) {
 	const { username, note } = req.body;
 	user
-		.updateOne({ username: username }, { $push: { notes: note } })
+		.findOneAndUpdate(
+			{ username: username },
+			{ $push: { notes: note } },
+			{ new: true }
+		)
 		.then((result) => {
 			console.log('result ', result);
+			res.locals.notes = result.notes
 			return next();
 		});
 };
