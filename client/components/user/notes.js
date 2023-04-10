@@ -1,15 +1,14 @@
 import React from 'react';
 
-/* To do: use useState in order to update the UL */
+const Notes = (props) => {
+    // logic to populate UL with LI containing each element of array
+    // props passed in is the notes array
+    console.log('this should be notes array', props.notes);
 
-const Notes = () => {
-    // will be passed notes as a prop from specific user, then can populate the UL
     return (
         <div>
-            <ul>
-                <li>this is a note</li>
-                <li>this is also a note</li>
-            </ul>
+            {/* here is the notes container, containing all notes. couldn't figure out how to get the UL to work.  */}
+            <div className="notes-container">{props.notes}</div>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();

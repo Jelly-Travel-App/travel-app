@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Login = (props) => {
     // const [isUser, setUser] = useState('');
+    // setUser from response from json
     return (
         <div>
             <form
@@ -21,24 +22,17 @@ const Login = () => {
                         }),
                     })
                         .then((res) => {
-                            console.log(
-                                'this is response before jsoning it',
-                                res
-                            );
+                            // return res.json();
                             return res.json();
                         })
                         .then((json) => {
-                            console.log('res: ', json);
+                            // console.log('res: ', json);
                             if (json === false) {
                                 // window.alert('this is an error');
                                 console.log('login failed');
                             } else {
-                                console.log(json.body);
-                                // we will get an obj with username and password
-                                // () =>
-                                //     setUser({
-                                //         user: res,
-                                //     });
+                                // we will get an obj with username and password, v, _id, notes
+                                return props.updateUser(json);
                             }
                         });
                 }}
