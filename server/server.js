@@ -36,7 +36,7 @@ app.post('/api/notes', userController.addNote, (req, res) => {
 
 //YELP API
 // /api/location, method: POST
-app.post('/api/location/:location', (req, res) => {
+app.post('/api/:location', (req, res) => {
 	// console.log('location working');
 	// deconstruct the location from the request body
 	const { location } = req.params;
@@ -46,7 +46,7 @@ app.post('/api/location/:location', (req, res) => {
 		headers: {
 			accept: 'application/json',
 			Authorization:
-				'Bearer IBMdLlOm1PLF0pGRVw-9rEYVWRXeziQBptvhDIpjfyuwrXxENqYZKDfZotJSb4RWkgPzNQbTHBV5FcJ33hzjyd_4SEl6j7M7teJr28dLDVBXc3o5IOTyMpRwIJcwZHYx',
+				'Bearer OmgJFQk8VBZfv0zC6St4qG5X1zfA694YbdWZlvFmF09GAU9vSgR56VG0g7FpjJf2XHGqO6kfeypyDcrKMkLMo_CzP4ED7v9XXodQazsa_YYnXIpy-kRkjs9z-DE0ZHYx',
 		},
 	};
 
@@ -59,6 +59,7 @@ app.post('/api/location/:location', (req, res) => {
 		// receive tha parsed data
 		.then((data) => {
 			// create a new array of objects containing only the information we want to display
+			console.log(data)
 			const locationInfo = data.businesses.map((obj) => {
 				return {
 					name: obj.name,
