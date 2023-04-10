@@ -1,5 +1,4 @@
 const user = require('./userModel');
-
 // creating the object for the middleware functions to be stored on
 const userController = {};
 
@@ -50,6 +49,7 @@ userController.verifyUser = function (req, res, next) {
 		.findOne({ username: username })
 		.then((user) => {
 			//if user doesn't exist or password is incorrect
+			console.log('user ', user);
 			if (user === null || user.password !== password) {
 				//return false on res.locals
 				res.locals.user = false;
@@ -66,6 +66,16 @@ userController.verifyUser = function (req, res, next) {
 				err: `Middleware error at userController.verifyUser`,
 				message: err,
 			});
+		});
+};
+
+userController.addNote = function (req, res, next) {
+	const { username, note } = req.body;
+	user
+		.updateOne({ username: username }, { $push: { notes: note } })
+		.then((result) => {
+			console.log('result ', result);
+			return next();
 		});
 };
 
