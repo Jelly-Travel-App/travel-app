@@ -10,11 +10,11 @@ const Login = (props) => {
     
     const navigate = useNavigate()
     function redirectToUserPage (newState) {
-        navigate('/user', { state: { username: newState.username, notes: newState.notes } })
+        navigate('/user', { state: newState })
     }
 
     return (
-        <div>
+        <div id='login-wrapper' className='flex'>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -56,7 +56,7 @@ const Login = (props) => {
                         );
                 }}
             >
-                <div id="login-text">
+                <div id="login-text" className="flex">
                     <input type="text" placeholder="Username" />
                     <input type="password" placeholder="Password" />
                     <button type="submit">Login</button>

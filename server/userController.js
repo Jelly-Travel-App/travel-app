@@ -27,7 +27,7 @@ userController.createUser = function (req, res, next) {
 					// error handling when creating new user doc
 					.catch((error) => {
 						return next({
-							log: 'Middleware error at userController.createuser',
+							log: 'Middleware error at userController.createuser1',
 							message: 'Username already exists',
 						});
 					});
@@ -36,7 +36,7 @@ userController.createUser = function (req, res, next) {
 		// error handling for querying DB
 		.catch((error) => {
 			return next({
-				log: 'Middleware error at userControler.createUser',
+				log: 'Middleware error at userControler.createUser2',
 				message: 'Error querying database',
 			});
 		});
@@ -70,6 +70,7 @@ userController.verifyUser = function (req, res, next) {
 };
 
 userController.addNote = function (req, res, next) {
+	console.log(req.body, 'req body')
 	const { username, note } = req.body;
 	user
 		.findOneAndUpdate(

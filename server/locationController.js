@@ -20,6 +20,7 @@ locationController.getRestaurants = function (req, res, next) {
 		.then((response) => response.json())
 		// receive tha parsed data
 		.then((data) => {
+			// console.log("we are in the controller for the locations")
 			// create a new array of objects containing only the information we want to display
 			const locationInfo = data.businesses.map((obj) => {
 				return {
@@ -34,6 +35,7 @@ locationController.getRestaurants = function (req, res, next) {
 			// console.log(locationInfo);
 			// save needed info into locals to be sent back to the front
 			res.locals.restaurantInfo = locationInfo;
+			// we ARE getting restaurants
 			return next();
 			// res.status(200).json(locationInfo);
 		})

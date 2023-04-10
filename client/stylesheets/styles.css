@@ -1,3 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html{
+    background-color: #93B1A7;
+}
+
 body {
     font-size: 30px;
+    font-family: Poppins, sans-serif;
+}
+
+button{
+    font-family: Poppins;
+}
+
+img{
+    height: auto;
+    width: 400px;
+    box-shadow: 2px 2px 5px black;
+}
+
+#login-wrapper{
+    justify-content: center;
+}
+#login-text{
+
+    flex-flow: column nowrap;
+    width: 250px;
+    padding: 10px;
+
+}
+#login-text input{
+    margin: 10px;
+}
+
+#login-text button{
+    width: 150px;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.flex{
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.center-all {
+    justify-content: center;
+    align-items: center;
+}
+
+#main-sign-up {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+#main-sign-up:hover {
+    text-decoration: underline;
+}
+
+.user-notes {
+    margin: 5px 0px;
+    font-size: 14px;
+}
+
+.restaurant-container{
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.restaurant-item{
+    margin: 10px;
+    width: 400px;
+}
+
+.event-item{
+    margin: 20px;
 }

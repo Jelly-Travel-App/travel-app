@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const SignUp = (props) => {
     const navigate = useNavigate()
     function redirectToUserPage (newState) {
-        navigate('/user', { state: newState })
+        navigate('/user', { state: { username: newState.username, notes: newState.notes } })
     }
     return (
         <div>
@@ -15,14 +15,14 @@ const SignUp = (props) => {
                     const password = e.target[1].value;
                     fetch('/api/signup', {
                         method: 'POST',
-                        header: {
+                        headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({ username, password }),
                     })
                         .then((res) => res.json())
                         .then((json) => {
-                            if (res === false){
+                            if (json === false){
                             // window.alert("Username already exists")
                             console.log("Username already exists")
                             } else {
