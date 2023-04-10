@@ -10,11 +10,11 @@ const Login = (props) => {
     
     const navigate = useNavigate()
     function redirectToUserPage (newState) {
-        navigate('/user', { state: { username: newState.username, notes: newState.notes } })
+        navigate('/user', { state: newState })
     }
 
     return (
-        <div>
+        <div id='login-wrapper' className='flex'>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -38,7 +38,7 @@ const Login = (props) => {
                         .then((json) => {
                             // console.log('res: ', json);
                             if (json === false) {
-                                // window.alert('this is an error');
+                                window.alert('Username and/or Password is not valid');
                                 console.log('login failed');
                             } else {
                                 // we will get an obj with username and password, v, _id, notes
@@ -47,6 +47,7 @@ const Login = (props) => {
                                 // props.updateUser(json)
                                 console.log("this is Props in login.js: ", props)
                                 // console.log(redirectToUserPage(props.updateUser(json)))
+                                window.alert('Successful log!');
                                 redirectToUserPage(json)
                                 // navigate('/user')
                             }
@@ -56,7 +57,7 @@ const Login = (props) => {
                         );
                 }}
             >
-                <div id="login-text">
+                <div id="login-text" className="flex">
                     <input type="text" placeholder="Username" />
                     <input type="password" placeholder="Password" />
                     <button type="submit">Login</button>

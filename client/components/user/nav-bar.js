@@ -19,18 +19,21 @@ const NavBar = (props) => {
                     })
                         .then((response) => {
                             
-                            // console.log(response);
-                            response.json();
+                            // console.log('this should be initial response:', response);
+                            return response.json();
                         })
                         .then((json) => {
                             // save data and pass it to restaurant container. will be X amount of restaurants.
-                            console.log('this should be the location response to json', json);
+                            // console.log('this should be the location response to json', json);
                             // update location here
-                            return props.updateLocation(json)
+                            // console.log('this should be response jsonified', json)
+                            // json['location'] = location
+                            return props.changeLocation(json)
                         });
                 }}
             >
                 {/* need input and button */}
+
                 <input type="text" placeholder="Enter Location!"></input>
                 <button type="submit">Submit Location</button>
             </form>

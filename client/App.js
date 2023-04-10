@@ -7,6 +7,8 @@ import SignUp from './components/landing-page/SignUp.js'
 // import Notes from './components/user/notes.js';
 // import stylesheets possibly?
 
+import './stylesheets/styles.css'
+
 const App = (props) => {
     // need to setuser from login file, and pass to userpage in this file as a prop.
     // unsure what to pass into useState
@@ -17,16 +19,17 @@ const App = (props) => {
     };
 
     // successful set user
-    console.log('this is user after login on App.js', user);
+    // console.log('this is user after login on App.js', user);
     return (
         <div>
-            <h1>Welcome Traveler</h1>
-            <h3>Please login</h3>
+            <h1 id='main-welcome-title' className = 'flex center-all'>Welcome Traveler</h1>
+            <h3 className='flex center-all'>Please login</h3>
+            <a className='flex center-all'><img src="https://i.imgur.com/upa5zmK.jpg" className='flex center-all' title="source: imgur.com" /></a>
             <Login updateUser={setUser} />
 
-            <h3>OR</h3>
-            <Link to='/signup'>
-                <a>SignUp</a>
+            <h3 className='flex center-all'>OR</h3>
+            <Link id='main-sign-up' to='/signup'>
+                <a className='flex center-all'>Sign Up</a>
             </Link>
 
             {/* pass in update user function to landing page */}
