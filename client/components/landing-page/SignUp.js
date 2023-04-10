@@ -23,16 +23,17 @@ const SignUp = (props) => {
                         .then((res) => res.json())
                         .then((json) => {
                             if (json === false){
-                            // window.alert("Username already exists")
+                            window.alert("Username already exists")
                             console.log("Username already exists")
                             } else {
-                            //window.alert("Congratulations! You have successfully ")
+                            window.alert("Congratulations! You have successfully made an account")
                             // console.log(json)
                             redirectToUserPage(json);
                 }})
                 }}
             >
                 <div id="signup-text">
+                    <h6>Please input a unique username and password.</h6>
                     <input type="text" placeholder="New Username" />
                     <input type="password" placeholder="Password" />
                     <button type="submit">Create Account</button>
