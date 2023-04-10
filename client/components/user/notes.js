@@ -4,11 +4,14 @@ const Notes = (props) => {
     // logic to populate UL with LI containing each element of array
     // props passed in is the notes array
     // set notes state here
-    const {notes, setNotes} = useState(props.notes)
+    console.log(props, 'notes')
+    const [notes, setNotes] = useState(props.user.notes)
+    // console.log('this is our notes initial state', notes)
+    
     return (
         <div>
             {/* here is the notes container, containing all notes. couldn't figure out how to get the UL to work.  */}
-            <div className="notes-container">{props.notes}</div>
+            <div className="notes-container" >{notes.map((note, i) => <p key={i}>{note}</p>)}</div>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -22,11 +25,17 @@ const Notes = (props) => {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            notes: {note}
+                            // grab username from props, which is the user object
+                            // and also notes
+                            username: props.user.username,
+                            note: note
                         })
                     })
                     .then(res => {
-                        console.log(res)
+                        return res.json()
+                    }).then(newNotes => {
+                        console.log(newNotes)
+                        return setNotes(newNotes);
                     })
 
                 }}

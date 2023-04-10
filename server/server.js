@@ -32,52 +32,11 @@ app.post('/api/signup', userController.createUser, (req, res) => {
 
 // notes
 app.post('/api/notes', userController.addNote, (req, res) => {
-	res.status(200).json(res.locals.notes);
+	res.sendStatus(200);
 });
 
 //YELP API
 // /api/location, method: POST
-<<<<<<< HEAD
-app.post('/api/:location', (req, res) => {
-	// console.log('location working');
-	// deconstruct the location from the request body
-	const { location } = req.params;
-	// specify the type of request
-	const options = {
-		method: 'GET',
-		headers: {
-			accept: 'application/json',
-			Authorization:
-				'Bearer OmgJFQk8VBZfv0zC6St4qG5X1zfA694YbdWZlvFmF09GAU9vSgR56VG0g7FpjJf2XHGqO6kfeypyDcrKMkLMo_CzP4ED7v9XXodQazsa_YYnXIpy-kRkjs9z-DE0ZHYx',
-		},
-	};
-
-	fetch(
-		`https://api.yelp.com/v3/businesses/search?location=${location}&term=resturants&sort_by=best_match&limit=3`,
-		options
-	)
-		// parse the response data
-		.then((response) => response.json())
-		// receive tha parsed data
-		.then((data) => {
-			// create a new array of objects containing only the information we want to display
-			console.log(data)
-			const locationInfo = data.businesses.map((obj) => {
-				return {
-					name: obj.name,
-					image: obj.image_url,
-					review_count: obj.review_count,
-					rating: obj.rating,
-					address: obj.location.display_address[0],
-					price: obj.price,
-				};
-			});
-			console.log(locationInfo);
-			res.status(200).json(locationInfo);
-		})
-		.catch((err) => console.log(err));
-});
-=======
 app.post(
 	'/api/location/:location',
 	locationController.getRestaurants,
@@ -91,7 +50,6 @@ app.post(
 		});
 	}
 );
->>>>>>> dev
 
 // handles requests to unknown routes
 // add better error?

@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = (props) => {
     const navigate = useNavigate()
+    function redirectToUserPage (newState) {
+        navigate('/user', { state: newState })
+    }
     return (
         <div>
             <form
@@ -19,21 +22,14 @@ const SignUp = (props) => {
                     })
                         .then((res) => res.json())
                         .then((json) => {
-                            //if (res === false){
-                            //window.alert("Username already exists")
-                            // console.log("Username already exists")
-                            //} else {
+                            if (res === false){
+                            // window.alert("Username already exists")
+                            console.log("Username already exists")
+                            } else {
                             //window.alert("Congratulations! You have successfully ")
                             // console.log(json)
-                            //     props.updateUser(json)
-                            //     console.log("this is Props in login.js: ", props)
-                            //// navigate('/user')
-                            //}
-
-                            console.log(data);
-                            window.location.href =
-                                'http://locahost:8080/signup';
-                        });
+                            redirectToUserPage(json);
+                }})
                 }}
             >
                 <div id="signup-text">

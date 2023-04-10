@@ -10,7 +10,7 @@ const Login = (props) => {
     
     const navigate = useNavigate()
     function redirectToUserPage (newState) {
-        navigate('/user', { state: newState })
+        navigate('/user', { state: { username: newState.username, notes: newState.notes } })
     }
 
     return (
@@ -43,10 +43,10 @@ const Login = (props) => {
                             } else {
                                 // we will get an obj with username and password, v, _id, notes
                                 console.log("json: ", json)
-                                console.log('props.updateUser(json): ', props.updateUser(json))
+                                // console.log('props.updateUser(json): ', props.updateUser(json))
                                 // props.updateUser(json)
                                 console.log("this is Props in login.js: ", props)
-                                console.log(redirectToUserPage(props.updateUser(json)))
+                                // console.log(redirectToUserPage(props.updateUser(json)))
                                 redirectToUserPage(json)
                                 // navigate('/user')
                             }

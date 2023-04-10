@@ -7,7 +7,6 @@ import SignUp from './components/landing-page/SignUp.js'
 // import Notes from './components/user/notes.js';
 // import stylesheets possibly?
 
-<<<<<<< HEAD
 const App = (props) => {
     // need to setuser from login file, and pass to userpage in this file as a prop.
     // unsure what to pass into useState
@@ -37,27 +36,6 @@ const App = (props) => {
             {/* <UserPage user={user} /> */}
         </div>
     );
-=======
-const App = () => {
-	// need to setuser from login file, and pass to userpage in this file as a prop.
-	// unsure what to pass into useState
-	const [user, setUser] = useState({});
-
-	// here is a function that will set user. need to from login.
-	const updateUser = (currentUser) => {
-		setUser(currentUser);
-	};
-	// successful set user
-	console.log('this is user after login on App.js', user);
-	return (
-		<div>
-			{/* pass in update user function to landing page */}
-			<Landing_Page updateUser={updateUser} />
-			{/* pass in updated user to userpage */}
-			<UserPage user={user} />
-		</div>
-	);
->>>>>>> dev
 };
 
 export default App;

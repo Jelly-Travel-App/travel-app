@@ -35,7 +35,8 @@ const UserPage = (props) => {
             <RestaurantContainer location={location} />
             {/* events container */}
             {/* notes is receiving the array of notes from the login */}
-            <Notes notes={user.state.notes} />
+            {/* <Notes notes={user.state.notes} /> */}
+            <Notes user={user.state} />
         </div>
     );
 };
