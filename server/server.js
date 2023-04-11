@@ -1,6 +1,7 @@
 const express = require('express');
+require("dotenv").config();
 const app = express();
-const PORT = 3000;
+const PORT = process.env.SERVER_PORT;
 
 const userController = require('./controllers/userController');
 const locationController = require('./controllers/locationController');
