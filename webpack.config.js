@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+require("dotenv").config();
 
 module.exports = {
 	entry: './client/index.js',

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema, model } = require('mongoose');
-
+require("dotenv").config();
 // URI to connect to database
-const MONGO_URI = 'mongodb+srv://garybalogh93:JnYYnDdiOA9FyzJo@cluster0.3u25ma1.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGODB_URI;
 
 // actual connection to the database, upon successful connection, log connected
 mongoose.connect(MONGO_URI)
