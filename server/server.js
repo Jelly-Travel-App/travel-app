@@ -1,17 +1,10 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const mongoose = require('mongoose');
-// URI to connect to the database
-const URI =
-	'mongodb+srv://garybalogh93:JnYYnDdiOA9FyzJo@cluster0.3u25ma1.mongodb.net/?retryWrites=true&w=majority';
+
 const userController = require('./controllers/userController');
 const locationController = require('./controllers/locationController');
-// actual connection to the database, upon successful connection, log connected
-mongoose.connect(URI);
-mongoose.connection.once('open', () => {
-	console.log('Connected to the database');
-});
+
 
 // parse all incoming requests
 app.use(express.json());
