@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 // URI to connect to the database
 const URI =
 	'mongodb+srv://JellyDev:jellytime@jelly-travel-app.yjivwqz.mongodb.net/?retryWrites=true&w=majority';
-const userController = require('./userController');
-const locationController = require('./locationController');
+const userController = require('./controllers/userController');
+const locationController = require('./controllers/locationController');
 // actual connection to the database, upon successful connection, log connected
 mongoose.connect(URI);
 mongoose.connection.once('open', () => {

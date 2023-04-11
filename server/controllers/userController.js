@@ -1,4 +1,4 @@
-const user = require('./userModel');
+const user = require('../models/userModel');
 // creating the object for the middleware functions to be stored on
 const userController = {};
 
