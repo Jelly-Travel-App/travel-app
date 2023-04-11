@@ -27,11 +27,9 @@ const SignUp = (props) => {
                             console.log("Username already exists")
                             } else {
                             window.alert("Congratulations! You have successfully made an account")
-                            // console.log(json)
                             redirectToUserPage(json);
-                }})
-                }}
-            >
+                }});
+                }}>
                 <div id="signup-text">
                     <h6>Please input a unique username and password.</h6>
                     <input type="text" placeholder="New Username" />

@@ -21,8 +21,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <RouterProvider router={router}>
-
         <App />
-
     </RouterProvider>
     );
+
+
+
+
+    //Users: Bobby Newport, Stephen, Adam, Minzo
+    //Password: password
+    //user: Ash pass: Ketchum
