@@ -4,7 +4,7 @@ const PORT = 3000;
 const mongoose = require('mongoose');
 // URI to connect to the database
 const URI =
-	'mongodb+srv://JellyDev:jellytime@jelly-travel-app.yjivwqz.mongodb.net/?retryWrites=true&w=majority';
+	'mongodb+srv://garybalogh93:JnYYnDdiOA9FyzJo@cluster0.3u25ma1.mongodb.net/?retryWrites=true&w=majority';
 const userController = require('./userController');
 const locationController = require('./locationController');
 // actual connection to the database, upon successful connection, log connected
