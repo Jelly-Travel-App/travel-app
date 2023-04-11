@@ -30,3 +30,4 @@ root.render(
 
     //Users: Bobby Newport, Stephen, Adam, Minzo
     //Password: password
+    //user: Ash pass: Ketchum
