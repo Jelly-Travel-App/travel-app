@@ -1,19 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+
 const userRouter = require('./routes/userRouter');
-const locationRouter = require('./routes/locationRouter')
-const mongoose = require('mongoose');
-// URI to connect to the database
-const URI =
-	'mongodb+srv://JellyDev:jellytime@jelly-travel-app.yjivwqz.mongodb.net/?retryWrites=true&w=majority';
-const userController = require('./controllers/userController');
-const locationController = require('./controllers/locationController');
-// actual connection to the database, upon successful connection, log connected
-mongoose.connect(URI);
-mongoose.connection.once('open', () => {
-	console.log('Connected to the database');
-});
+const locationRouter = require('./routes/locationRouter');
 
 // Parse all incoming requests for json and url encoded
 app.use(express.json());
