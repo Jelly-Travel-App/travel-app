@@ -1,7 +1,11 @@
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const user = require('../models/userModel');
-// creating the object for the middleware functions to be stored on
+
+// object for user middleware
 const userController = {};
 
+// create user
 userController.createUser = function (req, res, next) {
 	const { username, password } = req.body;
 	// query database with username
@@ -14,29 +18,28 @@ userController.createUser = function (req, res, next) {
 				res.locals.user = false;
 				return next();
 			} else {
-				// if username does not exist in DB, create a new user doc
-				user
-					.create({ username: username, password: password })
-					.then((result) => {
-						// console.log for testing purposes
-						console.log(`Created user: ${result}`);
-						// send the created user doc to the front end to be parsed and used
-						res.locals.user = result;
-						return next();
-					})
-					// error handling when creating new user doc
-					.catch((error) => {
-						return next({
-							log: 'Middleware error at userController.createuser1',
-							message: 'Username already exists',
+				// if username does not exist in DB, create a new user doc with hashed password
+				bcrypt.hash(password, saltRounds, (err, hash) => {
+					user.create({ username: username, password: hash})
+						.then(result => {
+							console.log(`Created user: ${result}`);
+							// send back created user
+							res.locals.user = result;
+							return next();
+						})
+						.catch((error) => {
+							return next({
+								log: 'Middleware error at userController.createUser',
+								message: 'Unable to create user',
+							});
 						});
-					});
+				});
 			}
 		})
 		// error handling for querying DB
 		.catch((error) => {
 			return next({
-				log: 'Middleware error at userControler.createUser2',
+				log: 'Middleware error at userControler.createUser',
 				message: 'Error querying database',
 			});
 		});
@@ -48,26 +51,32 @@ userController.verifyUser = function (req, res, next) {
 	//query database for user
 	user
 		.findOne({ username: username })
-		.then((user) => {
+		.then(user => {
 			//if user doesn't exist or password is incorrect
 			console.log('user ', user);
-			if (user === null || user.password !== password) {
+			if (user === null) {
 				//return false on res.locals
 				res.locals.user = false;
 				console.log('user not found')
 				return next();
 			} else {
-				//successful login
-				res.locals.user = user;
-				console.log('user found')
-				return next();
+				// username exists, compare password
+				bcrypt.compare(password, user.password)
+					.then(result => {
+						if (result) {
+							res.locals.user = user;
+							return next();
+						}
+						res.locals.user = false;
+						return next();
+					});
 			}
 		})
 		//database error handling
-		.catch((err) => {
+		.catch(error => {
 			return next({
-				err: `Middleware error at userController.verifyUser`,
-				message: err,
+				log: `Middleware error at userController.verifyUser`,
+				message: 'Error querying database for username',
 			});
 		});
 };
