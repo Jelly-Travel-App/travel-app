@@ -24,7 +24,7 @@ userController.createUser = async function (req, res, next) {
 			};
 		} catch (error) {
     return next({
-      log: 'Middleware error at userControler.createUser',
+      log: 'Middleware error at userController.createUser',
       message: 'Error querying database',
     });
   }
