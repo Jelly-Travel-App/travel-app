@@ -9,14 +9,10 @@ locationRouter.post(
 	locationController.getRestaurants,
 	locationController.getEvents,
 	(req, res) => {
-		// console.log('location working');
-		// deconstruct the location from the request body
-		//console.log('res.locals.restaurantInfo: ', res.locals.restaurantInfo, 'res.locals.eventInfo: ', res.locals.eventInfo)
 		res.status(200).json({
 			restaurantInfo: res.locals.restaurantInfo,
 			eventInfo: res.locals.eventInfo,
 		});
-		// res.status(200).json(res.locals)
 	}
 );
 
