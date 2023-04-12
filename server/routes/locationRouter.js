@@ -6,10 +6,20 @@ const locationController = require('../controllers/locationController');
 // /api/location, method: POST
 locationRouter.post(
 	'/:location',
+	locationController.getCoffeeShops,
+	locationController.getActivities,
+	locationController.getParks,
 	locationController.getRestaurants,
+	locationController.getBars,
+	locationController.getComedy,
 	(req, res) => {
 		res.status(200).json({
-			restaurantInfo: res.locals.restaurantInfo
+			coffeeInfo: res.locals.coffeeInfo,
+			activityInfo: res.locals.activityInfo,
+			parkInfo: res.locals.parkInfo,
+			restaurantInfo: res.locals.restaurantInfo,
+			barInfo: res.locals.barInfo,
+			comedyInfo: res.locals.comedyInfo,
 		});
 	}
 );
