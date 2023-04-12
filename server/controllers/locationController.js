@@ -59,7 +59,7 @@ locationController.getCoffeeShops = async function (req, res, next) {
 				price: obj.price,
 			};
 		});
-		res.locals.coffeeShopInfo = locationInfo;
+		res.locals.coffeeInfo = locationInfo;
 		return next();
 	} catch (err) {
 		return next({
