@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom';
-import App from './App.js';
-import SignUp from './components/landing-page/SignUp.js';
-import Login from './components/landing-page/Login.js';
-import UserPage from './components/user/user-page.js';
+import App from './App.jsx';
+import SignUp from './components/landing-page/SignUp.jsx';
+import Login from './components/landing-page/Login.jsx';
+import UserPage from './components/user/user-page.jsx';
 
 
 //defines routes to various pages
