@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Route handlers: Login, Signup, and Location paths
-app.use('/user', userRouter);
-app.use('/location', locationRouter);
+app.use('/api/user', userRouter);
+app.use('/api/location', locationRouter);
 
 // Handles requests to unknown routes
 app.use((req, res) => res.status(404).send(`The page you requested could not be found. Please check the URL for any errors and try again.`));

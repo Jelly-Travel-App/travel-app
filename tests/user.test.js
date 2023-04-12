@@ -14,4 +14,9 @@ beforeEach(async () => {
 // 	res.status(200).json(res.locals.user);
 // });
 
-
+describe("POST /api/login", () => {
+    isWebTarget("should return the user object", async () => {
+        const res = await request(app).get("/api/login");
+        expect(res.statusCode).toBe(200);
+    })
+})

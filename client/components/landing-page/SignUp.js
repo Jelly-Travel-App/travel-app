@@ -13,7 +13,7 @@ const SignUp = (props) => {
                     e.preventDefault();
                     const username = e.target[0].value;
                     const password = e.target[1].value;
-                    fetch('/api/signup', {
+                    fetch('/api/user/signup', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
