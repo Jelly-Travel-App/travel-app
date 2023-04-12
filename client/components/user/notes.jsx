@@ -1,13 +1,10 @@
 import React, {useState} from 'react';
 
 const Notes = (props) => {
-    // logic to populate UL with LI containing each element of array
-    // props passed in is the notes array
-    // set notes state here
-    // console.log(props, 'notes')
+    // user notes evaluated from props passed from ???
     const [notes, setNotes] = useState(props.user.notes)
-    // console.log('this is our notes initial state', notes)
     
+    //returns a list of notes as panels - not working.
     return (
         <div>
             <h4>NOTES:</h4>

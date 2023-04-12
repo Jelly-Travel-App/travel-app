@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Login from './components/landing-page/Login.js'
-
-
-import './stylesheets/styles.css'
+import Login from './components/landing-page/Login.jsx'
+import './stylesheets/styles.scss'
 
 const App = (props) => {
     const [user, setUser] = useState({});
-    // here is a function that will set user. need to from login.
+    // passing setUser into function in order to pass down to Login?  Not sure if necessary? 
     const updateUser = (currentUser) => {
         setUser(currentUser);
     };
 
-    // successful set user
+    // Returning the homepage with login / signup functionality
     return (
         <div>
             <h1 id='main-welcome-title' className = 'flex center-all'>Welcome Traveler</h1>
