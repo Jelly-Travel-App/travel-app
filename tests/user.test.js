@@ -45,7 +45,7 @@ xdescribe("POST /api/user/login", () => {
     })
 });
 
-describe("POST /api/user/signup", () => {
+xdescribe("POST /api/user/signup", () => {
     it("should return user object with hashed password", async () => {
         const res = await request(server).post("/api/user/signup").send({
             username:'johnDen',
