@@ -7,11 +7,9 @@ const locationController = require('../controllers/locationController');
 locationRouter.post(
 	'/:location',
 	locationController.getRestaurants,
-	locationController.getEvents,
 	(req, res) => {
 		res.status(200).json({
-			restaurantInfo: res.locals.restaurantInfo,
-			eventInfo: res.locals.eventInfo,
+			restaurantInfo: res.locals.restaurantInfo
 		});
 	}
 );
