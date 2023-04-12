@@ -17,7 +17,7 @@ const Login = (props) => {
                     const username = e.target[0].value;
                     const password = e.target[1].value;
                     // console.log(username, password);
-                    fetch('/api/login', {
+                    fetch('/api/user/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

@@ -44,6 +44,7 @@ userController.createUser = function (req, res, next) {
 
 userController.verifyUser = function (req, res, next) {
 	const { username, password } = req.body;
+	
 	//query database for user
 	user
 		.findOne({ username: username })
