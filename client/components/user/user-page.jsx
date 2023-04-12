@@ -12,29 +12,31 @@ const UserPage = (props) => {
     // also say hello {user}
     // perhaps have a location and set location, also a function that sets location? pass into nav bar.
     // location is an object with 2 arrays: restaurantInfo and eventInfo
+
+    // location state hook
     const [location, setLocation] = useState({})
     const changeLocation = (newLocation) => { setLocation(newLocation)}
 
+    // setting the path for use on index.js to user page
     const user = useLocation();
 
     
     return (
         <div className='flex center-all'>
-        <div className="user-page">
-            {/* have a greeting to specific user. this works */}
-            Hello {user.state.username}!!
-            <NavBar changeLocation={changeLocation}/>
-            {/* will need to pass in location response for restaurant container. */}
-            <div id='res-events-container'>
-            <RestaurantContainer location={location} />
-            {/*  */}
-            <EventsContainer location={location}/>
-            {/*  */}
-            <div>
-                <Notes user={user.state} />
-            </div>
+            <div className="user-page">
+                {/* User greeting - possibly replace with just username display */}
+                Hello {user.state.username}!!
+                <NavBar changeLocation={changeLocation}/>
+                {/* Prop drilling the location through to the restaurant and event containers */}
+                <div id='res-events-container'>
+                    <RestaurantContainer location={location} />
+                    <EventsContainer location={location}/>
+                    <div>
+                        {/* Passing notes state - unclear if actually working? */}
+                        <Notes user={user.state} />
+                    </div>
                 </div>
-        </div>
+            </div>
         </div>
     );
 };

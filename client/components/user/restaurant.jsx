@@ -1,14 +1,13 @@
 import React from 'react';
 
-
-// return a name, image, review count, rating, address, price
 const Restaurant = (props) => {
-    // props.restaurantInfo is an object with ^^
+    // return a restaurant card with fields image, name, # of reviews, avg rating, address, and price
+    // pulled from props passed down via the query to backend in nav-bar
     return (
         <div className='flex column restaurant-item'>
             <img src={`${props.restaurantInfo.image}`}/>
             <h3>{props.restaurantInfo.name}</h3>
-            <div>Number of reviews: {props.restaurantInfo.review_count}</div>
+            <div>Number of Reviews: {props.restaurantInfo.review_count}</div>
             <div>Rating: {props.restaurantInfo.rating}⭐</div>
             <div>Address: {props.restaurantInfo.address}</div>
             <div>Price: {props.restaurantInfo.price}</div>
