@@ -5,7 +5,7 @@ const locationController = require('../controllers/locationController');
 //YELP API
 // /api/location, method: POST
 locationRouter.post(
-	'/api/location/:location',
+	'/:location',
 	locationController.getRestaurants,
 	locationController.getEvents,
 	(req, res) => {

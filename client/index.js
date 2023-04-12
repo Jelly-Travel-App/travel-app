@@ -7,27 +7,20 @@ import Login from './components/landing-page/Login.js';
 import UserPage from './components/user/user-page.js';
 
 
-//defines routes
+//defines routes to various pages
 const router = createBrowserRouter([
-  //<Link to='/'><button>Click</button></Link>
-    { path: '/', element: <App /> },
-    { path: '/login', element: <Login /> },
+  { path: '/', element: <App /> },
+  { path: '/login', element: <Login /> },
 	{ path: '/signup', element: <SignUp /> },
 	{ path: '/user', element: <UserPage /> },
-
 ]);
 
+//create root element
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+//render app page
 root.render(
-    <RouterProvider router={router}>
-        <App />
-    </RouterProvider>
-    );
-
-
-
-
-    //Users: Bobby Newport, Stephen, Adam, Minzo
-    //Password: password
-    //user: Ash pass: Ketchum
+  <RouterProvider router={router}>
+    <App />
+  </RouterProvider>
+);
