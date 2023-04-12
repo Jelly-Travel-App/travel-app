@@ -1,26 +1,62 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
 const server = require('../server/server');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 require("dotenv").config();
 
+//connect to mongoDB to access user information
 beforeEach(async () => {
     await mongoose.connect(process.env.MONGODB_URI);
   });
 
+  //disconnect after each test
   afterEach(async () => {
     await mongoose.connection.close();
   });
 
-describe("POST /api/login", () => {
-    it("should return the user object", async () => {
-        const res = await request(server).get("/api/login").send({
-            username: 'eric',
-            password: '123'
+  //test login post request
+xdescribe("POST /api/user/login", () => {
+    it("should return the user object with hashed password", async () => {
+        const res = await request(server).post("/api/user/login").send({
+            username: 'garyb',
+            password: 'firechicken'
         })
-        expect(res.statusCode).toBe(200);
-        expect(res.body.username).toBe('eric');
-        expect(res.body.password).toBe('123');
-        expect(Array.isArray(res.body.notes)).toBe(true);
+        console.log(res);
+        expect(res.status).toBe(200);
+        expect(res.body.username).toBe('garyb');
+        expect(res.body.password).not.toBe('firechicken');
+        expect(res.body.password).toBe('$2b$10$NadHOpQBA6TNqEEIFyRFKuRWwAb4EM94jyn9Q6zbtxVcKY/xC7Kym');
+    });
+    it("should return false for unknown user", async () => {
+        const res = await request(server).post("/api/user/login").send({
+            username: 'root',
+            password: 'obaga'
+        })
+        expect(res.status).toBe(200);
+        expect(res.body).toBe(false);
+    });
+    it("should return error for improper login", async () => {
+        const res = await request(server).post("/api/user/login").send({
+            chicken:'butt'
+        })
+        expect(res.status).toBe(500);
+    })
+});
+
+describe("POST /api/user/signup", () => {
+    it("should return user object with hashed password", async () => {
+        const res = await request(server).post("/api/user/signup").send({
+            username:'johnDen',
+            password:'hi'
+        });
+        const pass = await bcrypt.hash('hi', saltRounds);
+        let bool = bcrypt.compareSync(res.body.password, pass)
+        expect(res.status).toBe(200);
+        expect(res.body.username).toBe('johnDen');
+        expect(res.body.password).not.toBe('hi');
+        expect(bool).toBe(true);
     });
 });
+

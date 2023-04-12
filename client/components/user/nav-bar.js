@@ -18,7 +18,6 @@ const NavBar = (props) => {
                         body: JSON.stringify({ location }),
                     })
                         .then((response) => {
-                            
                             // console.log('this should be initial response:', response);
                             return response.json();
                         })

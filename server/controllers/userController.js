@@ -27,7 +27,7 @@ userController.createUser = function (req, res, next) {
 							res.locals.user = result;
 							return next();
 						})
-						.catch((error) => {
+						.catch((err) => {
 							return next({
 								log: 'Middleware error at userController.createUser',
 								message: 'Unable to create user',
@@ -37,7 +37,7 @@ userController.createUser = function (req, res, next) {
 			}
 		})
 		// error handling for querying DB
-		.catch((error) => {
+		.catch((err) => {
 			return next({
 				log: 'Middleware error at userControler.createUser',
 				message: 'Error querying database',
@@ -47,6 +47,12 @@ userController.createUser = function (req, res, next) {
 
 userController.verifyUser = function (req, res, next) {
 	const { username, password } = req.body;
+	if (!username || !password){
+		return next({
+			log: `Server could not complete request error, invalid login`,
+			message: 'Error querying database for username',
+		});
+	}
 	console.log('made it into verification')
 	//query database for user
 	user
