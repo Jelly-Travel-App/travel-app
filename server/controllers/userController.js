@@ -27,7 +27,7 @@ userController.createUser = async function (req, res, next) {
       log: 'Middleware error at userControler.createUser',
       message: 'Error querying database',
     });
-  };
+  }
 };
 
 userController.verifyUser = async function (req, res, next) {
