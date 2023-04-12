@@ -14,10 +14,4 @@ userRouter.post('/signup', userController.createUser, (req, res) => {
 	res.status(200).json(res.locals.user);
 });
 
-//Notes Route
-userRouter.post('/notes', userController.addNote, (req, res) => {
-	res.status(200).json(res.locals.notes);
-});
-
-
 module.exports = userRouter;

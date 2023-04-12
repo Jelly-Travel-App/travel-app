@@ -9,68 +9,184 @@ const options = {
 	},
 };
 
-locationController.getRestaurants = function (req, res, next) {
-	const { location } = req.params;
-	// send request to YELP API's resturant info
-	fetch(
-		`https://api.yelp.com/v3/businesses/search?location=${location}&term=resturants&sort_by=best_match&limit=3`,
-		options
-	)
-		// parse the response data
-		.then((response) => response.json())
-		// receive tha parsed data
-		.then((data) => {
-			// console.log("we are in the controller for the locations")
-			// create a new array of objects containing only the information we want to display
-			const locationInfo = data.businesses.map((obj) => {
-				return {
-					name: obj.name,
-					image: obj.image_url,
-					review_count: obj.review_count,
-					rating: obj.rating,
-					address: obj.location.display_address[0],
-					price: obj.price,
-				};
-			});
-			// console.log(locationInfo);
-			// save needed info into locals to be sent back to the front
-			res.locals.restaurantInfo = locationInfo;
-			// we ARE getting restaurants
-			return next();
-			// res.status(200).json(locationInfo);
-		})
-		.catch((err) => {
-			return next(err);
+// GET RESTAURANT INFO FROM API
+locationController.getRestaurants = async function (req, res, next) {
+	try {
+		const { location } = req.params;
+		const response = await fetch(
+			`https://api.yelp.com/v3/businesses/search?location=${location}&term=resturants&sort_by=best_match&limit=3`,
+			options
+		);
+		const data = await response.json();
+		// map new array of objects containing pertinent data
+		const locationInfo = data.businesses.map((obj) => {
+			return {
+				name: obj.name,
+				image: obj.image_url,
+				review_count: obj.review_count,
+				rating: obj.rating,
+				address: obj.location.display_address[0],
+				price: obj.price,
+			};
 		});
+		res.locals.restaurantInfo = locationInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Middleware error at locationController.getRestaurants',
+			message: 'Error fetching API data',
+    	});
+	}
 };
 
-locationController.getEvents = function (req, res, next) {
-	const { location } = req.params;
-	// send request to YELP API's event info
-	fetch(
-		`https://api.yelp.com/v3/events?limit=3&sort_by=desc&sort_on=popularity&location=${location}&start_date=1681144462`,
-		options
-	)
-		// parse the response data
-		.then((response) => response.json())
-		.then((data) => {
-			// create a new array of objects containing only the information we want to display
-			const locationInfo = data.events.map((obj) => {
-				return {
-					name: obj.name,
-					image: obj.image_url,
-					address: obj.location.display_address[0],
-					is_free: obj.is_free,
-					description: obj.description,
-				};
-			});
-			// save the info into locals to be sent back to the front
-			res.locals.eventInfo = locationInfo;
-			return next();
-		})
-		.catch((err) => {
-			return next(err);
+// GET COFFEE SHOP INFO FROM API
+locationController.getCoffeeShops = async function (req, res, next) {
+	try {
+		const { location } = req.params;
+		const response = await fetch(
+			`https://api.yelp.com/v3/businesses/search?location=${location}&term=coffee&sort_by=best_match&limit=3`,
+			options
+		);
+		const data = await response.json();
+		// map new array of objects containing pertinent data
+		const locationInfo = data.businesses.map((obj) => {
+			return {
+				name: obj.name,
+				image: obj.image_url,
+				review_count: obj.review_count,
+				rating: obj.rating,
+				address: obj.location.display_address[0],
+				price: obj.price,
+			};
 		});
+		res.locals.coffeeShopInfo = locationInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Middleware error at locationController.getCoffeeShops',
+			message: 'Error fetching API data',
+    	});
+	}
+};
+
+// GET ACTIVITY INFO FROM API
+locationController.getActivities = async function (req, res, next) {
+	try {
+		const { location } = req.params;
+		const response = await fetch(
+			`https://api.yelp.com/v3/businesses/search?location=${location}&term=activity&sort_by=best_match&limit=3`,
+			options
+		);
+		const data = await response.json();
+		// map new array of objects containing pertinent data
+		const locationInfo = data.businesses.map((obj) => {
+			return {
+				name: obj.name,
+				image: obj.image_url,
+				review_count: obj.review_count,
+				rating: obj.rating,
+				address: obj.location.display_address[0],
+				price: obj.price,
+			};
+		});
+		res.locals.activityInfo = locationInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Middleware error at locationController.getActivities',
+			message: 'Error fetching API data',
+    	});
+	}
+};
+
+// GET PARK INFO FROM API
+locationController.getParks = async function (req, res, next) {
+	try {
+		const { location } = req.params;
+		const response = await fetch(
+			`https://api.yelp.com/v3/businesses/search?location=${location}&term=park&sort_by=best_match&limit=3`,
+			options
+		);
+		const data = await response.json();
+		// map new array of objects containing pertinent data
+		const locationInfo = data.businesses.map((obj) => {
+			return {
+				name: obj.name,
+				image: obj.image_url,
+				review_count: obj.review_count,
+				rating: obj.rating,
+				address: obj.location.display_address[0],
+				price: obj.price,
+			};
+		});
+		res.locals.parkInfo = locationInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Middleware error at locationController.getParks',
+			message: 'Error fetching API data',
+    	});
+	}
+};
+
+// GET BAR INFO FROM API
+locationController.getBars = async function (req, res, next) {
+	try {
+		const { location } = req.params;
+		const response = await fetch(
+			`https://api.yelp.com/v3/businesses/search?location=${location}&term=bar&sort_by=best_match&limit=3`,
+			options
+		);
+		const data = await response.json();
+		// map new array of objects containing pertinent data
+		const locationInfo = data.businesses.map((obj) => {
+			return {
+				name: obj.name,
+				image: obj.image_url,
+				review_count: obj.review_count,
+				rating: obj.rating,
+				address: obj.location.display_address[0],
+				price: obj.price,
+			};
+		});
+		res.locals.barInfo = locationInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Middleware error at locationController.getBars',
+			message: 'Error fetching API data',
+    	});
+	}
+};
+
+// GET COMEDY INFO FROM API
+locationController.getComedy = async function (req, res, next) {
+	try {
+		const { location } = req.params;
+		const response = await fetch(
+			`https://api.yelp.com/v3/businesses/search?location=${location}&term=comedy&sort_by=best_match&limit=3`,
+			options
+		);
+		const data = await response.json();
+		// map new array of objects containing pertinent data
+		const locationInfo = data.businesses.map((obj) => {
+			return {
+				name: obj.name,
+				image: obj.image_url,
+				review_count: obj.review_count,
+				rating: obj.rating,
+				address: obj.location.display_address[0],
+				price: obj.price,
+			};
+		});
+		res.locals.comedyInfo = locationInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Middleware error at locationController.getComedy',
+			message: 'Error fetching API data',
+    	});
+	}
 };
 
 module.exports = locationController;
