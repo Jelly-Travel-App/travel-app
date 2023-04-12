@@ -44,7 +44,7 @@ userController.createUser = function (req, res, next) {
 
 userController.verifyUser = function (req, res, next) {
 	const { username, password } = req.body;
-	
+	console.log('made it into verification')
 	//query database for user
 	user
 		.findOne({ username: username })
@@ -54,10 +54,12 @@ userController.verifyUser = function (req, res, next) {
 			if (user === null || user.password !== password) {
 				//return false on res.locals
 				res.locals.user = false;
+				console.log('user not found')
 				return next();
 			} else {
 				//successful login
 				res.locals.user = user;
+				console.log('user found')
 				return next();
 			}
 		})

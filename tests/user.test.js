@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
-const app = require("../client/.App");
+const server = require('../server/server');
 
 require("dotenv").config();
 
@@ -8,15 +8,19 @@ beforeEach(async () => {
     await mongoose.connect(process.env.MONGODB_URI);
   });
 
-
-//   app.post('/api/login', userController.verifyUser, (req, res) => {
-// 	console.log('login working');
-// 	res.status(200).json(res.locals.user);
-// });
+  afterEach(async () => {
+    await mongoose.connection.close();
+  });
 
 describe("POST /api/login", () => {
-    isWebTarget("should return the user object", async () => {
-        const res = await request(app).get("/api/login");
+    it("should return the user object", async () => {
+        const res = await request(server).get("/api/login").send({
+            username: 'eric',
+            password: '123'
+        })
         expect(res.statusCode).toBe(200);
-    })
-})
+        expect(res.body.username).toBe('eric');
+        expect(res.body.password).toBe('123');
+        expect(Array.isArray(res.body.notes)).toBe(true);
+    });
+});
