@@ -5,9 +5,7 @@ require("dotenv").config();
 const MONGO_URI = process.env.MONGODB_URI;
 
 // actual connection to the database, upon successful connection, log connected
-mongoose.connect(MONGO_URI)
-	.then(() => console.log('Connected to database'))
-	.catch(err => console.log('Unable to connect to database'));
+mongoose.connect(MONGO_URI);
 
 // schema for users
 const userSchema = new Schema({

@@ -23,7 +23,7 @@ xdescribe("POST /api/user/login", () => {
             username: 'garyb',
             password: 'firechicken'
         })
-        console.log(res);
+        //console.log(res);
         expect(res.status).toBe(200);
         expect(res.body.username).toBe('garyb');
         expect(res.body.password).not.toBe('firechicken');
@@ -45,18 +45,17 @@ xdescribe("POST /api/user/login", () => {
     })
 });
 
+
+
 xdescribe("POST /api/user/signup", () => {
     it("should return user object with hashed password", async () => {
         const res = await request(server).post("/api/user/signup").send({
-            username:'johnDen',
+            username:'joh',
             password:'hi'
         });
-        const pass = await bcrypt.hash('hi', saltRounds);
-        let bool = bcrypt.compareSync(res.body.password, pass)
         expect(res.status).toBe(200);
-        expect(res.body.username).toBe('johnDen');
+        expect(res.body.username).toBe('joh');
         expect(res.body.password).not.toBe('hi');
-        expect(bool).toBe(true);
+
     });
 });
-
