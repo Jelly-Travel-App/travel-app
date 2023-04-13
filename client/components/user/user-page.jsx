@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useLocation } from 'react-router-dom';
-import RestaurantContainer from './restaurant-container';
+import CardContainer from './card-container';
 import NavBar from './nav-bar';
 
 
@@ -18,19 +18,14 @@ const UserPage = (props) => {
     // setting the path for use on index.js to user page
     const user = useLocation();
 
-    
-    return (
-        <div className='flex center-all'>
-            <div className="user-page">
-                {/* User greeting - possibly replace with just username display */}
-                Hello {user.state.username}!!
-                <NavBar changeLocation={changeLocation}/>
-                {/* Prop drilling the location through to the restaurant container */}
-                <div id='res-events-container'>
-                    <RestaurantContainer location={location} />
 
-                </div>
-            </div>
+    return (
+        <div className="user-page">
+            <header>
+                <NavBar changeLocation={changeLocation} username={user.state.username}/>
+            </header>
+            {/* Prop drilling the location through to the card container */}
+            <CardContainer location={location} />
         </div>
     );
 };
