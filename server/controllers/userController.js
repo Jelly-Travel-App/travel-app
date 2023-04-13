@@ -32,12 +32,20 @@ userController.createUser = async function (req, res, next) {
 
 userController.verifyUser = async function (req, res, next) {
 	const { username, password } = req.body;
+	if (!username || !password){
+		return next({
+			log: `Server could not complete request error, invalid login`,
+			message: 'Error querying database for username',
+		});
+	}
+	//query database for user
 	try {
 		//query database for user
 		const user = await User.findOne({ username: username })	
 			console.log('user:', user);
 			if (!user) {
 				res.locals.user = false;
+				console.log('user not found')
 				return next();
 			} 
 			// username exists, compare password
