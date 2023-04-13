@@ -72,18 +72,18 @@ img{
   font-size: 14px;
 }
 
-.restaurant-container{
+.card-container{
   width: 100%;
   align-items: flex-start;
   justify-content: space-around;
-  margin: 20px;
 }
 
-.restaurant-item{
+.card-item{
   margin: 10px;
-  width: 400px;
+  width: 50vw;
+  justify-content: space-between;
 }
 
-.event-item{
-  margin: 20px;
+.card-info {
+  padding-left: 20px !important;
 }
