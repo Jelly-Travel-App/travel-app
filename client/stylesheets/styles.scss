@@ -1,12 +1,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html{
   background-color: #93B1A7;
 }
 
 body {
-  font-size: 30px;
+  font-size: 1em;
   font-family: Poppins, sans-serif;
 }
 
@@ -15,9 +21,8 @@ button{
 }
 
 img{
-  height: auto;
   width: 400px;
-  box-shadow: 2px 2px 5px black;
+  height: auto;
 }
 
 #login-wrapper{
@@ -40,23 +45,6 @@ img{
   margin-top: 10px;
 }
 
-.flex{
-  display: flex;
-}
-
-.column {
-  flex-direction: column;
-}
-
-.row {
-  flex-direction: row;
-}
-
-.center-all {
-  justify-content: center;
-  align-items: center;
-}
-
 #main-sign-up {
   text-decoration: none;
   color: black;
@@ -67,23 +55,37 @@ img{
   text-decoration: underline;
 }
 
-.user-notes {
-  margin: 5px 0px;
-  font-size: 14px;
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding: 20px 0;
+  background-color: aliceblue;
+  box-shadow: 2px 2px 5px black;
 }
 
-.card-container{
-  width: 100%;
-  align-items: flex-start;
-  justify-content: space-around;
+.card-container {
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+
+  .card-item {
+    margin: 10px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 5px black;
+    background-color: aliceblue;
+    
+    img {
+      width: 300px;
+      height: 200px;
+    }
+
+    .card-info {
+      padding: 10px;
+    }
+  }
 }
 
-.card-item{
-  margin: 10px;
-  width: 50vw;
-  justify-content: space-between;
-}
-
-.card-info {
-  padding-left: 20px !important;
-}
