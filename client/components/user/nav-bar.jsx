@@ -10,6 +10,7 @@ const NavBar = (props) => {
   return (
     // nav bar, with logout button and location query
     <nav>
+      <h3>{props.username}</h3>
       <form
         // on form submission, ingests the location from the location textbox on the page
         onSubmit={(e) => {

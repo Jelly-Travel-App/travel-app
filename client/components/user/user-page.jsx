@@ -20,14 +20,12 @@ const UserPage = (props) => {
 
 
     return (
-        <div className='flex center-all'>
-            <div className="user-page">
-                {/* User greeting - possibly replace with just username display */}
-                Hello {user.state.username}!!
-                <NavBar changeLocation={changeLocation}/>
-                {/* Prop drilling the location through to the restaurant container */}
-                <CardContainer location={location} />
-            </div>
+        <div className="user-page">
+            <header>
+                <NavBar changeLocation={changeLocation} username={user.state.username}/>
+            </header>
+            {/* Prop drilling the location through to the card container */}
+            <CardContainer location={location} />
         </div>
     );
 };

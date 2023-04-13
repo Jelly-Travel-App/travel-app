@@ -11,39 +11,30 @@ const CardContainer = (props) => {
 
   const cardArr = [];
 
-  // populate the restaurant array with individual restaurant cards.
+  if (props.location.coffeeInfo) {
+    cardArr.push(<Card cardInfo={props.location.coffeeInfo[randomGenerator()]} />);
+  }
+  if (props.location.parkInfo) {
+    cardArr.push(<Card cardInfo={props.location.parkInfo[randomGenerator()]} />);
+  }
+  if (props.location.activityInfo) {
+    cardArr.push(<Card cardInfo={props.location.activityInfo[randomGenerator()]} />);
+  }
   if (props.location.restaurantInfo) {
-    for (let i = 0; i < props.location.restaurantInfo.length; i++) {
-      cardArr.push(
-        <Card cardInfo={props.location.restaurantInfo[i]} />
-      )
-    }
+    cardArr.push(<Card cardInfo={props.location.restaurantInfo[randomGenerator()]} />);
   }
-
   if (props.location.barInfo) {
-    for (let i = 0; i < props.location.barInfo.length; i++) {
-      cardArr.push(
-        <Card cardInfo={props.location.barInfo[1]} />
-      )
-    }
+    cardArr.push(<Card cardInfo={props.location.barInfo[randomGenerator()]} />);
+  }
+  if (props.location.comedyInfo) {
+    cardArr.push(<Card cardInfo={props.location.comedyInfo[randomGenerator()]} />);
   }
 
-  if (props.location.coffeInfo) {
-    cardArr.push(<Card cardInfo={props.location.coffeInfo[0]} />);
-  }
-
-  console.log(props.location);
-  console.log(props.location.coffeeInfo);
 
   //return populated restaurant array as individual cards
   return (
-    <div className="card-container flex column">
-       {/* <Card cardInfo={coffee} /> */}
-       {/* <Card cardInfo={props.location.parkInfo[0]} />
-       <Card cardInfo={props.location.activityInfo[0]} /> */}
-       {cardArr}
-       {/* <Card cardInfo={props.location.barInfo[0]} />
-       <Card cardInfo={props.location.comedyInfo[0]} /> */}
+    <div className="card-container">
+      {cardArr}
     </div>
   );
 };
